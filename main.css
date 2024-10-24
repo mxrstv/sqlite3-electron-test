@@ -1,0 +1,18 @@
+button {
+  margin: 10px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid grey;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: whitesmoke;
+}
+
+th, td {
+  padding-left: 5px;
+  border: 1px solid gray;
+  text-align: left;
+}

@@ -1,17 +1,26 @@
-const wrapper = document.getElementById('wrapper');
+const tbody = document.querySelector('tbody');
 
-const loadData = async () => {
+const reloadData = async () => {
+  const fragment = document.createDocumentFragment()
   const result = await window.api.requestData();
   result.forEach((item) => {
-    const hero = document.createElement('p');
-    hero.textContent = JSON.stringify(item);
-    wrapper.appendChild(hero);
+    const tr = document.createElement('tr')
+    Object.values(item).forEach((value) => {
+      const td = document.createElement('td');
+      td.textContent = value;
+      tr.appendChild(td);
+    });
+    fragment.appendChild(tr);
   });
+  tbody.replaceChildren(fragment);
  };
 
- const btnCreate = document.querySelector('#btnCreate');
- btnCreate.addEventListener('click', () => {
-  window.api.openCreateForm();
- })
+const btnCreate = document.querySelector('#btnCreate');
+btnCreate.addEventListener('click', () => {
+window.api.openCreateForm();
+})
 
- window.addEventListener('DOMContentLoaded', loadData);
+const sum = () => 1;
+
+window.addEventListener('DOMContentLoaded', reloadData);
+window.api.onReloadData(reloadData);
