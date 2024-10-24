@@ -1,0 +1,15 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+div {
+  margin-bottom: 5px;
+}
+
+label {
+  display: block;
+}
+
+input {
+  width: 100%;
+}

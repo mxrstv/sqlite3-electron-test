@@ -3,22 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>New Hero</title>
+  <title>New user</title>
+  <link href="./new.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
   <div id="wrapper">
     <form>
-      <p>
-        <label for="name">First name:</label>
+      <div>
+        <label for="nickname">Nickname:</label>
+        <input type="text" name="nickname" id="nickname" required>
+      </div>
+      <div>
+        <label for="name">Name:</label>
         <input type="text" name="name" id="name" required>
-      </p>
-      <p>
-        <label for="name">Last name:</label>
-        <input type="text" name="name" id="name" required>
-      </p>
-      <p>
+      </div>
+      <div>
+        <label for="sirname">Sirname:</label>
+        <input type="text" name="sirname" id="sirname">
+      </div>
         <button type="submit">Save</button>
-      </p>
     </form>
   </div>
 </body>

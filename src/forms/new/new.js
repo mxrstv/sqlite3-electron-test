@@ -1,7 +1,7 @@
 const handleSubmit = (e) => {
   e.preventDefault();
   const formData = new FormData(e.target);
-  window.api.insertHero([...formData.values()]);
+  window.api.insertUser([...formData.values()]);
   //window.api.closeMe();
 
 };

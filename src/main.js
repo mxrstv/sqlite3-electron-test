@@ -5,34 +5,34 @@ const db = new sqlite3.Database('./data/test.db');
 
 const getDataFromDB = async () => {
   return new Promise ((res) => {
-    db.all("SELECT * FROM heroes", (err, rows) => {
+    db.all("SELECT * FROM users", (err, rows) => {
       res(rows);
     });
   });
 };
 
 // const getDataFromDB = async () => {
-//   const {err, rows} = await db.all("SELECT * FROM heroes")
+//   const {err, rows} = await db.all("SELECT * FROM users")
 //   if (!err) {
 //     return rows;
 //   }
 // };
 
-const insertHero  = (arg) => {
-  db.run("INSERT INTO heroes (first_name, last_name) values(?, ?)", arg, function(err) {
+const insertUser = (arg) => {
+  db.run("INSERT INTO users (nickname, name, sirname) values(?, ?, ?)", arg, function(err) {
     // TODO error handling
       if (err) {
         console.log(err.message);
-        return (err.message);
+        return new Error(err.message);
       }
-      console.log(`A row has been inserted with rowid ${this.lastID}`);
+      console.log(`A row has been inserted with row id ${this.lastID}`);
     })
 };
 
 let mainWin;
 const createWindow = () => {
   mainWin = new BrowserWindow({
-    width: 800,
+    width: 600,
     height: 600,
     autoHideMenuBar: true,
     webPreferences: {
@@ -46,7 +46,7 @@ const createWindow = () => {
 const createChildWindow= () => {
   const childWin = new BrowserWindow({
     width: 400,
-    height: 200,
+    height: 220,
     autoHideMenuBar: true,
     resizable: false,
     parent: mainWin,
@@ -78,11 +78,11 @@ app.whenReady().then(() => {
   //   senderWindow.close();
   // });
 
-  ipcMain.on('insertHero', (event, arg) => {
+  ipcMain.on('insertUser', (event, arg) => {
     const senderWindow = BrowserWindow.fromWebContents(event.sender);
     senderWindow.close();
     try {
-      insertHero(arg);
+      insertUser(arg);
       mainWin.webContents.send('reload-data');
       senderWindow.close();
     } catch (error) {

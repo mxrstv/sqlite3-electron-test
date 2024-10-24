@@ -3,34 +3,25 @@ const db = new sqlite3.Database('./data/test.db');
 
 db.serialize(() => {
   db.run(`
-    CREATE TABLE IF NOT EXISTS heroes (
+    CREATE TABLE IF NOT EXISTS users (
       id INTEGER PRIMARY KEY,
-      first_name TEXT NOT NULL,
-      last_name TEXT)
+      nickname TEXT NOT NULL UNIQUE,
+      name TEXT NOT NULL,
+      sirname TEXT)
   `);
 
-  db.run('DELETE FROM heroes;');
+  db.run('DELETE FROM USERS;');
 
   db.run(`
-    INSERT INTO heroes (first_name, last_name)       
-    VALUES ('Sirius','Black'),
-          ('Albus','Dumbledore'),
-          ('Mundungus','Fletcher'),
-          ('Rubeus','Hagrid'),
-          ('Remus','Lupin'),
-          ('Alastor','Moody'),
-          ('James','Potter'),
-          ('Lily','Potter'),
-          ('Peter','Pettigrew'),
-          ('Severus','Snape'), 
-          ('Minerva','McGonagall'),
-          ('Nymphadora','Tonks'),
-          ('Kingsley','Shacklebolt'),
-          ('Arthur','Weasley'),
-          ('Molly','Weasley');
+    INSERT INTO USERS (nickname, name, sirname)       
+    VALUES ('murom', 'Илья','Муромец'),
+          ('pop','Алеша', 'Попович'),
+          ('dobriy','Добрыня', 'Никитич'),
+          ('yaga', 'Баба', 'Яга'),
+          ('aquatic', 'Водяной','');
   `);
 
-  db.all("SELECT * FROM heroes", (err, rows) => {
+  db.all("SELECT * FROM users", (err, rows) => {
       console.log(rows);
   });
 });
