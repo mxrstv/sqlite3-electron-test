@@ -1,7 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('node:path');
 const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('./test.db');
+const db = new sqlite3.Database('./data/test.db');
 
 const getDataFromDB = async () => {
   return new Promise ((res) => {
@@ -39,7 +39,7 @@ const createWindow = () => {
       preload: path.join(__dirname, 'preload.js')
     }
   });
-  mainWin.loadFile('index.html');
+  mainWin.loadFile('./src/main.html');
   // mainWin.webContents.openDevTools();
 }
 
@@ -56,7 +56,7 @@ const createChildWindow= () => {
     }
   });
 
-  childWin.loadFile('form-new-hero.html');
+  childWin.loadFile('./src/forms/new/new.html');
   // childWin.webContents.openDevTools();
 }
 
