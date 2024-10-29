@@ -8,7 +8,7 @@
 
 ```npm run start```
 
-On startup, an empty database is created. You can create a pre-filled database or recreate it after experiments with the command:
+You can recreate database after experiments with the command:
 
 ```npm run create-db```
 

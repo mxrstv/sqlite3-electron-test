@@ -1,7 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('node:path');
 const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('./data/test.db');
+const db = new sqlite3.Database('./db/test.db');
 
 const getDataFromDB = async () => {
   return new Promise ((res) => {
